@@ -21,10 +21,18 @@
     [super viewDidLoad];
     Picture* picture1 = [[Picture alloc]init];
     picture1.image = [UIImage imageNamed:@"DukeAtNight"];
+    picture1.frameColor = [self generateRandomColor];
     self.pictures = [NSArray arrayWithObjects:picture1, nil];
     // Do any additional setup after loading the view.
 }
 
+-(UIColor*)generateRandomColor{
+    float r = (float)arc4random()/INT_MAX;
+    float g = (float)arc4random()/INT_MAX;
+    float b = (float)arc4random()/INT_MAX;
+    UIColor* result = [UIColor colorWithRed:r green:g blue:b alpha:1];
+    return result;
+}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PictureCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PictureCell" forIndexPath:indexPath];
