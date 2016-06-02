@@ -10,7 +10,7 @@
 #import "Picture.h"
 #import "PictureCollectionViewCell.h"
 
-@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property NSArray* pictures;
 
 @end
@@ -18,26 +18,24 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    NSLog(@"Delete this line");
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    Picture* picture1 = [[Picture alloc]init];
+    picture1.image = [UIImage imageNamed:@"DukeAtNight"];
+    self.pictures = [NSArray arrayWithObjects:picture1, nil];
+    // Do any additional setup after loading the view.
 }
+
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PictureCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PictureCell" forIndexPath:indexPath];
-    Picture* picture = [[Picture alloc] init];
-    cell.myPicture = picture;
+    Picture* currentPicture = [self.pictures objectAtIndex:indexPath.row];
+    cell.imageView.image = currentPicture.image;
+    cell.backgroundColor = currentPicture.frameColor;
     return cell;
-    
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.pictures.count;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

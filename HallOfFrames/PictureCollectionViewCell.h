@@ -10,7 +10,7 @@
 #import "Picture.h"
 
 @interface PictureCollectionViewCell : UICollectionViewCell
-@property Picture* myPicture;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 
 @end
