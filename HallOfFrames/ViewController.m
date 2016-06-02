@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "Picture.h"
+#import "PictureCollectionViewCell.h"
 
 @interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property NSArray* pictures;
@@ -21,7 +23,10 @@
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PictureCell" forIndexPath:indexPath];
+    PictureCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PictureCell" forIndexPath:indexPath];
+    Picture* picture = [[Picture alloc] init];
+    cell.myPicture = picture;
+    return cell;
     
 }
 

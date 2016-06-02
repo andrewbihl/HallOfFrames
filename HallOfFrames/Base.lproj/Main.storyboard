@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ydl-no-7de">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ydl-no-7de">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,6 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Gzb-8p-KU1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8CG-jz-bY1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ids-2b-f2I">
@@ -29,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="399" height="287"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J78-gS-35X">
@@ -71,10 +72,10 @@
                                 <exclude reference="ids-2b-f2I"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="M3V-BI-RfK"/>
                                 <exclude reference="QRj-j0-un2"/>
                                 <exclude reference="SZy-Sq-KLh"/>
                                 <exclude reference="m8h-wH-wJk"/>
-                                <exclude reference="M3V-BI-RfK"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -82,10 +83,10 @@
                                 <include reference="ids-2b-f2I"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="M3V-BI-RfK"/>
                                 <include reference="QRj-j0-un2"/>
                                 <include reference="SZy-Sq-KLh"/>
                                 <include reference="m8h-wH-wJk"/>
-                                <include reference="M3V-BI-RfK"/>
                             </mask>
                         </variation>
                     </view>
