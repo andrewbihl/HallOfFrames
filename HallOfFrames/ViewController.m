@@ -9,8 +9,10 @@
 #import "ViewController.h"
 #import "Picture.h"
 #import "PictureCollectionViewCell.h"
+#import "MyCustomView.h"
 
 @interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+
 @property NSArray* pictures;
 
 @end
@@ -19,12 +21,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     Picture* picture1 = [[Picture alloc]init];
     picture1.image = [UIImage imageNamed:@"DukeAtNight"];
     picture1.frameColor = [self generateRandomColor];
-    self.pictures = [NSArray arrayWithObjects:picture1, nil];
+    Picture* picture2 = [[Picture alloc]init];
+    picture2.image = [UIImage imageNamed:@"FrenchBridge"];
+    picture2.frameColor = [self generateRandomColor];
+    Picture* picture3 = [[Picture alloc]init];
+    picture3.image = [UIImage imageNamed:@"Painting"];
+    picture3.frameColor = [self generateRandomColor];
+    Picture* picture4 = [[Picture alloc]init];
+    picture4.image = [UIImage imageNamed:@"yosemite"];
+    picture4.frameColor = [self generateRandomColor];
+    self.pictures = [NSArray arrayWithObjects:picture1,picture2,picture3,picture4,nil];
+
     // Do any additional setup after loading the view.
 }
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+   // Show the new view with options to change color.
+    NSArray* newViews = [[NSBundle mainBundle] loadNibNamed:@"CustomizedView" owner:self options:nil];
+    MyCustomView* newView = [newViews objectAtIndex:0];
+    [self.view addSubview:newView];
+    NSLog(@"%@",self.view.subviews);
+    
+//    newView.delegate = self;
+}
+
 
 -(UIColor*)generateRandomColor{
     float r = (float)arc4random()/INT_MAX;
