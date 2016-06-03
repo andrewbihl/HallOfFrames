@@ -8,16 +8,16 @@
 
 #import "MyCustomView.h"
 
-@implementation MyCustomView
-- (IBAction)onButtonTapped:(id)sender {
+@implementation MyCustomView{
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+
+- (IBAction)onSliderMoved:(UISlider *)sender {
+    NSLog(@"GO");
+    float updatedValue = sender.value;
+    NSString* sliderID = sender.restorationIdentifier;
+    [self.delegate updateColorValueWithRestorationID:sliderID toFloat:updatedValue];
 }
-*/
 
 @end

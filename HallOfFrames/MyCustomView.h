@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MyCustomViewDelegate <NSObject>
+
+-(void)updateColorValueWithRestorationID:(NSString*)color toFloat:(float)newValue;
+
+@end
+
+
 @interface MyCustomView : UIView
+@property id<MyCustomViewDelegate> delegate;
 
 @end
