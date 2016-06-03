@@ -72,10 +72,14 @@
         self.menuShown = true;
     }
     else{
-        [self.menuView removeFromSuperview];
-        self.menuShown = false;
-        self.currentSelectedCell = nil;
-        self.selectedCellIndex = -1;
+        [UIView animateWithDuration:0.2 animations:^{
+            self.menuView.alpha = 0.3;
+        }completion:^(BOOL finished){
+            [self.menuView removeFromSuperview];
+            self.menuShown = false;
+            self.currentSelectedCell = nil;
+            self.selectedCellIndex = -1;
+        }];
     }
 }
 
