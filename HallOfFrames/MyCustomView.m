@@ -12,7 +12,6 @@
 }
 
 
-
 - (IBAction)onSliderMoved:(UISlider *)sender {
     NSLog(@"GO");
     float updatedValue = sender.value;

@@ -41,6 +41,11 @@
                 <constraint firstItem="t7b-vQ-j3f" firstAttribute="top" secondItem="vix-UV-NUX" secondAttribute="bottom" constant="30" id="iDE-Ta-RgG"/>
                 <constraint firstItem="wlR-c1-X3u" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lRY-2y-luM"/>
             </constraints>
+            <connections>
+                <outlet property="blueSlider" destination="t7b-vQ-j3f" id="JIZ-8h-Jbx"/>
+                <outlet property="greenSlider" destination="vix-UV-NUX" id="dz7-si-5lr"/>
+                <outlet property="redSlider" destination="wlR-c1-X3u" id="67C-fh-Jnp"/>
+            </connections>
         </view>
     </objects>
 </document>

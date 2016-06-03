@@ -15,6 +15,9 @@
 
 @property NSArray* pictures;
 @property PictureCollectionViewCell* currentSelectedCell;
+@property NSInteger selectedCellIndex;
+@property BOOL menuShown;
+@property MyCustomView* menuView;
 
 @end
 
@@ -43,18 +46,37 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
    // Show the new view with options to change color.
-    
-    NSArray* newViews = [[NSBundle mainBundle] loadNibNamed:@"CustomizedView" owner:self options:nil];
-    MyCustomView* newView = [newViews objectAtIndex:0];
-    int x = self.view.frame.origin.x + self.view.frame.size.width * (1.0/5);
-    int y = self.view.frame.origin.y + self.view.frame.size.height / 3.0;
-    int width = self.view.frame.size.width * (3.0/5);
-    int height = self.view.frame.size.height/3.0;
-    newView.delegate = self;
-    self.currentSelectedCell = [collectionView cellForItemAtIndexPath:indexPath];
-    [newView setFrame:CGRectMake(x, y, width, height)];
-    [self.view addSubview:newView];    
-//    newView.delegate = self;
+    if (!self.menuShown){
+        NSArray* newViews = [[NSBundle mainBundle] loadNibNamed:@"CustomizedView" owner:self options:nil];
+        MyCustomView* newView = [newViews objectAtIndex:0];
+        //Create frame for slider menu
+        int x = self.view.frame.origin.x + self.view.frame.size.width * (1.0/5);
+        int y = self.view.frame.origin.y + self.view.frame.size.height / 3.0;
+        int width = self.view.frame.size.width * (3.0/5);
+        int height = self.view.frame.size.height/3.0;
+        [newView setFrame:CGRectMake(x, y, width, height)];
+        
+        CGFloat red,green,blue,alpha;
+        Picture* selectedPicture = self.pictures[indexPath.row];
+        UIColor *selectedCellFrameColor = selectedPicture.frameColor;
+        [selectedCellFrameColor getRed:&red green:&green blue:&blue alpha:&alpha];
+        newView.redSlider.value = red;
+        newView.greenSlider.value = green;
+        newView.blueSlider.value = blue;
+        
+        newView.delegate = self;
+        self.currentSelectedCell = [collectionView cellForItemAtIndexPath:indexPath];
+        self.selectedCellIndex = indexPath.row;
+        self.menuView = newView;
+        [self.view addSubview:self.menuView];
+        self.menuShown = true;
+    }
+    else{
+        [self.menuView removeFromSuperview];
+        self.menuShown = false;
+        self.currentSelectedCell = nil;
+        self.selectedCellIndex = -1;
+    }
 }
 
 -(void)updateColorValueWithRestorationID:(NSString *)color toFloat:(float)newValue{
@@ -69,6 +91,8 @@
     else
         self.currentSelectedCell.backgroundColor = [UIColor colorWithRed:red green:green blue:newValue alpha:alpha];
     
+    Picture* changed = [self.pictures objectAtIndex:self.selectedCellIndex];
+    changed.frameColor = self.currentSelectedCell.backgroundColor;
 }
 
 -(UIColor*)generateRandomColor{
